@@ -76,8 +76,8 @@
 </template>
 
 <script>
-  import {deleteUrl, getInfo,update} from "../api/admin";
-
+  import {deleteUrl, getInfo,updateAdmin} from "../api/admin";
+  import URL from '../utils/utils'
   export default {
     name: "Home",
     data() {
@@ -85,7 +85,7 @@
         fileList1: [],
         fileList2: [],
         fileList3: [],
-        url: 'http://192.168.0.112:8081/admin/upload',
+        url: URL.UPLOAD_URL,
         admin:{}
       }
     },
@@ -95,39 +95,39 @@
         deleteUrl(this.admin.via.substr(length + 1));
         this.admin.via = '';
         this.fileList1 = []
-        update(this.admin);
+        updateAdmin(this.admin);
       },
       handlePreview1(file) {
       },
       handleSuccess1(response, file, fileList) {
         this.admin.via = response.data
-        update(this.admin);
+        updateAdmin(this.admin);
       },
       handleRemove2(file, fileList) {
         const length = this.admin.code1.lastIndexOf('/')
         deleteUrl(this.admin.code1.substr(length + 1));
         this.admin.code1 = '';
         this.fileList2 = []
-        update(this.admin);
+        updateAdmin(this.admin);
       },
       handlePreview2(file) {
       },
       handleSuccess2(response, file, fileList) {
         this.admin.code1 = response.data
-        update(this.admin);
+        updateAdmin(this.admin);
       },
       handleRemove3(file, fileList) {
         const length = this.admin.code2.lastIndexOf('/')
         deleteUrl(this.admin.code2.substr(length + 1));
         this.admin.code2 = '';
         this.fileList3 = []
-        update(this.admin);
+        updateAdmin(this.admin);
       },
       handlePreview3(file) {
       },
       handleSuccess3(response, file, fileList) {
         this.admin.code2 = response.data
-        update(this.admin);
+        updateAdmin(this.admin);
       },
       handleInfo() {
         getInfo().then(res => {

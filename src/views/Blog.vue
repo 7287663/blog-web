@@ -302,12 +302,13 @@
   import {tagList} from "../api/tag";
   import {getCommentList, deleteComment} from "../api/common";
   import {deleteUrl} from "../api/admin";
+  import URL from '../utils/utils'
 
   export default {
     name: "Blog",
     data() {
       return {
-        url: 'http://192.168.0.109:8080/admin/upload',
+        url: URL.UPLOAD_URL,
         disabled: false,
         dialogImageUrl: '',
         dialogVisible: false,

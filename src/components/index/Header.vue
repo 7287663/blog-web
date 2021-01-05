@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import {update} from "../../api/admin";
+    import {updatePwd} from "../../api/admin";
 
     export default {
         name: "Header",
@@ -84,7 +84,7 @@
             updateData(ruleForm) {
                 this.$refs[ruleForm].validate((valid)=>{
                     if(valid){
-                        update(this.ruleForm).then(res => {
+                        updatePwd(this.ruleForm).then(res => {
                             this.$message({
                                 type: res.data.flag ? 'success' : 'error',
                                 message: res.data.message
