@@ -280,7 +280,7 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <v-md-editor v-model="form.content" height="400px"></v-md-editor>
+          <v-md-editor v-model="form.content" :disabled-menus="[]" @upload-image="handleUploadImage" height="400px"></v-md-editor>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -301,7 +301,7 @@
   import {blogList, updateBlogTop, deleteBlog, putWayBlog, getBlog, updateBlog, addBlog} from "../api/blog";
   import {tagList} from "../api/tag";
   import {getCommentList, deleteComment} from "../api/common";
-  import {deleteUrl} from "../api/admin";
+  import {deleteUrl,upload} from "../api/admin";
   import URL from '../utils/utils'
 
   export default {
@@ -355,6 +355,23 @@
       }
     },
     methods: {
+      handleUploadImage(event, insertImage, files){
+        // 拿到 files 之后上传到文件服务器，然后向编辑框中插入对应的内容
+        let formData = new FormData();
+        formData.append('file',files[0])
+        upload(formData).then(res=>{
+            if(res.data.flag){
+              insertImage({
+                url: res.data.data,
+                width: 'auto',
+                height: 'auto',
+              });
+            }
+        })
+
+        // 此处只做示例
+
+      },
       handleRemove(file, fileList) {
         const length = this.form.coverUrl.lastIndexOf('/')
         deleteUrl(this.form.coverUrl.substr(length + 1));

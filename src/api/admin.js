@@ -16,3 +16,7 @@ export function deleteUrl(url) {
 export function getInfo(){
     return v.request1.get('')
 }
+
+export function upload(file) {
+    return v.request.post('/upload',file)
+}
