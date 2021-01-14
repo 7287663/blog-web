@@ -241,7 +241,7 @@
       </el-dialog>
 
 
-      <el-dialog title="博客操作" :visible.sync="dialogFormVisible" width="60%">
+      <el-dialog title="博客操作" :visible.sync="dialogFormVisible" width="60%" :close-on-click-modal=false>
         <el-form :model="form" :rules="rules" ref="form" class="dialog">
           <el-form-item prop="title">
             <el-input type='textarea' :autosize="{ minRows: 2, maxRows: 4}" v-model="form.title"
@@ -277,6 +277,7 @@
                          :key="list.id"
                          :label="list.name"
                          :value="list"
+                         v-show="list.id !== 1"
               ></el-option>
             </el-select>
           </el-form-item>
