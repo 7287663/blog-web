@@ -76,8 +76,9 @@
 </template>
 
 <script>
-  import {deleteUrl, getInfo,updateAdmin} from "../api/admin";
+  import {deleteUrl, getInfo, updateAdmin} from "../api/admin";
   import URL from '../utils/utils'
+
   export default {
     name: "Home",
     data() {
@@ -86,7 +87,7 @@
         fileList2: [],
         fileList3: [],
         url: URL.UPLOAD_URL,
-        admin:{}
+        admin: {}
       }
     },
     methods: {
@@ -131,12 +132,13 @@
       },
       handleInfo() {
         getInfo().then(res => {
-            if(res.data.flag){
-              this.admin = res.data.data;
-            }
+          if (res.data.flag) {
+            this.admin = res.data.data;
+          }
         })
       }
-    },created() {
+    },
+    created() {
       this.handleInfo();
     }
   }

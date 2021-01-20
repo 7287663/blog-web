@@ -369,9 +369,6 @@
               });
             }
         })
-
-        // 此处只做示例
-
       },
       handleRemove(file, fileList) {
         const length = this.form.coverUrl.lastIndexOf('/')
